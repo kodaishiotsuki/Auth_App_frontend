@@ -3,6 +3,10 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import Header from "./common/Header";
+import axios from "axios";
+
+//set main base url
+axios.defaults.baseURL = "http://localhost:8888/api";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
