@@ -1,13 +1,14 @@
 import axios from "axios";
 import React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
-  //初期状態設定
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+
 
   //ログインフォーム
   const formSubmit = (e) => {
@@ -20,7 +21,10 @@ const Login = () => {
     axios
       .post("/login", data)
       .then((response) => {
-        console.log(response);
+        //localStorageにトークン保存
+        localStorage.setItem("token", response.data.token);
+        //profileページへ遷移
+        navigate("/profile");
       })
       .catch((error) => {
         console.log(error);
