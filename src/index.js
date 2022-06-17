@@ -8,6 +8,10 @@ import axios from "axios";
 //set main base url
 axios.defaults.baseURL = "http://localhost:8888/api";
 
+//Bearer Token Save
+axios.defaults.headers.common["Authorization"] =
+  "Bearer " + localStorage.getItem("token");
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
