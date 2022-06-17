@@ -3,16 +3,16 @@ import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ user, setUser }) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
-
   //ログインフォーム
   const formSubmit = (e) => {
     e.preventDefault();
+
     //API取得(login)
     const data = {
       email: email,
@@ -23,6 +23,8 @@ const Login = () => {
       .then((response) => {
         //localStorageにトークン保存
         localStorage.setItem("token", response.data.token);
+        //
+        setUser(response.data.user);
         //profileページへ遷移
         navigate("/profile");
       })

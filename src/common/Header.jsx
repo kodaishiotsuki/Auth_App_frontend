@@ -25,17 +25,17 @@ const Header = () => {
       });
   }, []);
 
-  console.log(user);
+  // console.log(user);
 
   return (
     <div>
       <BrowserRouter>
         <div>
-          <Navbar />
+          <Navbar user={user} setUser={setUser} />
 
           <Routes>
             <Route exact path='/' element={<Home />} />
-            <Route exact path='/profile' element={<Profile />} />
+            <Route exact path='/profile' element={<Profile user={user} />} />
             <Route exact path='/login' element={<Login />} />
             <Route exact path='/register' element={<Register />} />
             <Route exact path='/forget' element={<Forget />} />

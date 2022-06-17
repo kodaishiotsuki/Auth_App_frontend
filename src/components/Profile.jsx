@@ -1,6 +1,6 @@
 import React from "react";
 
-const Profile = () => {
+const Profile = ({ user }) => {
   return (
     <div>
       <br />
@@ -10,8 +10,8 @@ const Profile = () => {
           <h3 className='text-center'>User Profile</h3>
 
           <ul class='list-group'>
-            <li className='list-group-item'>Name : name </li>
-            <li className='list-group-item'>Email : Email</li>
+            <li className='list-group-item'>Name : {user.name} </li>
+            <li className='list-group-item'>Email : {user.email}</li>
           </ul>
         </div>
       </div>
