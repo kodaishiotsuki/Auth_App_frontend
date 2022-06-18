@@ -23,7 +23,7 @@ const Login = ({ user, setUser }) => {
       .then((response) => {
         //localStorageにトークン保存
         localStorage.setItem("token", response.data.token);
-        //
+        //ログインユーザー更新
         setUser(response.data.user);
         //profileページへ遷移
         navigate("/profile");

@@ -13,6 +13,7 @@ const Profile = ({ user }) => {
             <li className='list-group-item'>Name : {user.name} </li>
             <li className='list-group-item'>Email : {user.email}</li>
           </ul>
+
         </div>
       </div>
     </div>

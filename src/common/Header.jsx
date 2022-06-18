@@ -36,8 +36,16 @@ const Header = () => {
           <Routes>
             <Route exact path='/' element={<Home />} />
             <Route exact path='/profile' element={<Profile user={user} />} />
-            <Route exact path='/login' element={<Login />} />
-            <Route exact path='/register' element={<Register />} />
+            <Route
+              exact
+              path='/login'
+              element={<Login user={user} setUser={setUser} />}
+            />
+            <Route
+              exact
+              path='/register'
+              element={<Register user={user} setUser={setUser} />}
+            />
             <Route exact path='/forget' element={<Forget />} />
           </Routes>
         </div>
