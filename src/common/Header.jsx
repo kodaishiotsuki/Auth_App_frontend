@@ -8,6 +8,7 @@ import Forget from "../components/Forget";
 import Profile from "../components/Profile";
 import { useEffect } from "react";
 import axios from "axios";
+import Reset from "../components/Reset";
 
 const Header = () => {
   const [user, setUser] = useState([]);
@@ -46,7 +47,14 @@ const Header = () => {
               path='/register'
               element={<Register user={user} setUser={setUser} />}
             />
-            <Route exact path='/forget' element={<Forget />} />
+            <Route
+              exact
+              path='/forget'
+              element={<Forget />}
+              user={user}
+              setUser={setUser}
+            />
+            <Route exact path='/reset/:id' element={<Reset />} />
           </Routes>
         </div>
       </BrowserRouter>
