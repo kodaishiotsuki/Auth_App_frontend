@@ -54,7 +54,11 @@ const Header = () => {
               user={user}
               setUser={setUser}
             />
-            <Route exact path='/reset/:id' element={<Reset />} />
+            <Route
+              exact
+              path='/reset/:id'
+              element={<Reset user={user} setUser={setUser} />}
+            />
           </Routes>
         </div>
       </BrowserRouter>

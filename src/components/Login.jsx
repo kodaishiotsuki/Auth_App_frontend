@@ -25,13 +25,27 @@ const Login = ({ user, setUser }) => {
         localStorage.setItem("token", response.data.token);
         //ログインユーザー更新
         setUser(response.data.user);
+        setMessage(response.data.message);
+
         //profileページへ遷移
         navigate("/profile");
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
+        setMessage(error.response.data.message);
       });
   };
+
+  let error = "";
+  if (message) {
+    error = message && (
+      <>
+        <div className='alert alert-danger' role='alert'>
+          {message}
+        </div>
+      </>
+    );
+  }
 
   return (
     <div>
@@ -42,6 +56,7 @@ const Login = ({ user, setUser }) => {
           <h3 className='text-center'>Login Account</h3>
 
           <form onSubmit={formSubmit}>
+            {error}
             <div className='form-group'>
               <label for='exampleInputEmail1'>Email address</label>
               <input

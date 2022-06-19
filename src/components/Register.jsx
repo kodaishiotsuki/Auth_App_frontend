@@ -24,17 +24,30 @@ const Register = ({ user, setUser }) => {
     axios
       .post("/register", data)
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         //localStorageにトークン保存
         localStorage.setItem("token", response.data.token);
         setUser(response.data.user);
+        setMessage(response.data.message);
         //profileページへ遷移
         navigate("/profile");
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
+        setMessage(error.response.data.message);
       });
   };
+
+  let error = "";
+  if (message) {
+    error = message && (
+      <>
+        <div className='alert alert-danger' role='alert'>
+          {message}
+        </div>
+      </>
+    );
+  }
 
   return (
     <div>
@@ -45,6 +58,7 @@ const Register = ({ user, setUser }) => {
           <h3 className='text-center'>Register Account</h3>
 
           <form onSubmit={formSubmit}>
+            {error}
             <div className='form-group'>
               <label for='exampleInputEmail1'>User Name</label>
               <input

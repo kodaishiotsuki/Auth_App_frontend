@@ -1,9 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const Forget = ({ user, setUser }) => {
-  const navigate = useNavigate();
+const Forget = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
@@ -18,12 +17,26 @@ const Forget = ({ user, setUser }) => {
     axios
       .post("/forgetpassword", data)
       .then((response) => {
-        console.log(response);
+        setMessage(response.data.message);
+        document.getElementById("forgetform").reset();
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
+        setMessage(error.response.data.message);
       });
   };
+
+  let error = "";
+  if (message) {
+    error = message && (
+      <>
+        <div className='alert alert-danger' role='alert'>
+          {message}
+        </div>
+      </>
+    );
+  }
+
   return (
     <div>
       <br />
@@ -32,7 +45,8 @@ const Forget = ({ user, setUser }) => {
         <div className='jumbotron col-lg-4 offset-lg-4'>
           <h3 className='text-center'>Forget Password</h3>
 
-          <form onClick={formSubmit}>
+          <form onClick={formSubmit} id='forgetform'>
+            {error}
             <div className='form-group'>
               <label for='exampleInputEmail1'>Email address</label>
               <input
